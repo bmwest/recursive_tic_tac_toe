@@ -122,7 +122,6 @@ while true
   computer_move(board_c)
   print_grid(board_c)
   if full_board?(board_c) == "true"
-    puts "#{board_c[1]}"
     break
   end
 end
