@@ -63,6 +63,7 @@ def player_move(board)
   elsif full_board?(board) == "true"
     return
   end
+  puts "This position is has been taken."
   player_move(board)
 end
 
@@ -93,6 +94,7 @@ def full_board?(board)
   if board[0].include?(' ') || board[0].empty? || board[1].include?(' ') || board[1].empty? || board[2].include?(' ') || board[2].empty?
     return "false"
   else
+    puts "board is full"
     return "true"
   end
 end
@@ -114,3 +116,13 @@ board_c = [
   [],
   []
 ]
+
+while true
+  player_move(board_c)
+  computer_move(board_c)
+  print_grid(board_c)
+  if full_board?(board_c) == "true"
+    puts "#{board_c[1]}"
+    break
+  end
+end
