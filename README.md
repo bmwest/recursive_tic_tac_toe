@@ -5,4 +5,5 @@ This is a game of tic-tac-toe where many of the game actions are executed recurs
 * ```board_c``` is empty, and ready for simulation.
 * To see a simulation, clone this repo, and run ```ruby game.rb``` from the project's root directory.
 * The game will only exit once all tiles are filled.
+* You are currently allowed switch from ```x``` to ```o``` mid-game, but this will be adjusted.
 * Check back soon for scoring capability!
