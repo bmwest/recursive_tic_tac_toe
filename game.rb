@@ -40,6 +40,22 @@ def accept_row
   accept_row
 end
 
+def computer_move(board)
+  moves = ['x','o']
+  row_placement = [0, 1, 2]
+  column_placement = [0, 1, 2]
+
+  m = moves.sample
+  r = row_placement.sample
+  c = column_placement.sample
+  if board[r][c] == nil
+    puts "computer moves #{m} to [#{r}][#{c}]"
+    board[r].insert(c, m)
+    return "#{board[r][c]}"
+  end
+  computer_move(board)
+end
+
 def accept_column
   print "Please enter the column of your next move (0, 1, or 2)\n> "
   column = gets.chomp
@@ -49,16 +65,15 @@ def accept_column
   accept_column
 end
 
-def place_move(board)
+def player_move(board)
   choice = accept_move
   r = accept_row.to_i
   c = accept_column.to_i
-  # binding.pry
   if board[r][c] == nil
     board[r].insert(c, choice)
     return "#{board[r][c]}"
   end
-  place_move(board)
+  player_move(board)
 end
 
 board_a = [
