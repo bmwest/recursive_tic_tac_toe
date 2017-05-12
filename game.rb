@@ -40,22 +40,6 @@ def accept_row
   accept_row
 end
 
-def computer_move(board)
-  moves = ['x','o']
-  row_placement = [0, 1, 2]
-  column_placement = [0, 1, 2]
-
-  m = moves.sample
-  r = row_placement.sample
-  c = column_placement.sample
-  if board[r][c] == nil
-    puts "computer moves #{m} to [#{r}][#{c}]"
-    board[r].insert(c, m)
-    return "#{board[r][c]}"
-  end
-  computer_move(board)
-end
-
 def accept_column
   print "Please enter the column of your next move (0, 1, or 2)\n> "
   column = gets.chomp
@@ -72,8 +56,45 @@ def player_move(board)
   if board[r][c] == nil
     board[r].insert(c, choice)
     return "#{board[r][c]}"
+  elsif board[r][c] == ' '
+    board[r].delete_at(c)
+    board[r].insert(c, choice)
+    return "#{board[r][c]}"
+  elsif full_board?(board) == "true"
+    return
   end
   player_move(board)
+end
+
+def computer_move(board)
+  moves = ['x','o']
+  row_placement = [0, 1, 2]
+  column_placement = [0, 1, 2]
+
+  m = moves.sample
+  r = row_placement.sample
+  c = column_placement.sample
+  if board[r][c] == nil
+    board[r].insert(c, m)
+    puts "computer moves #{m} to [#{r}][#{c}]"
+    return "#{board[r][c]}"
+  elsif board[r][c] == ' '
+    board[r].delete_at(c)
+    board[r].insert(c, m)
+    puts "computer moves #{m} to [#{r}][#{c}]"
+    return "#{board[r][c]}"
+  elsif full_board?(board) == "true"
+    return
+  end
+  computer_move(board)
+end
+
+def full_board?(board)
+  if board[0].include?(' ') || board[0].empty? || board[1].include?(' ') || board[1].empty? || board[2].include?(' ') || board[2].empty?
+    return "false"
+  else
+    return "true"
+  end
 end
 
 board_a = [
